@@ -1,0 +1,28 @@
+{
+  "name": "nodedex",
+  "version": "0.0.1",
+  "description": "A Pokemon Pokedex website made in Node",
+  "main": "index.ts",
+  "scripts": {
+    "test": "ts-node src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MechaDragonX/nodedex.git"
+  },
+  "keywords": [
+    "pokemon",
+    "pokedex"
+  ],
+  "author": "Raghav Vivek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MechaDragonX/nodedex/issues"
+  },
+  "homepage": "https://github.com/MechaDragonX/nodedex#readme",
+  "dependencies": {
+    "@types/node": "^13.9.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0"
+  }
+}
