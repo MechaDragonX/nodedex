@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/node": "^13.9.0",
     "express": "^4.17.1",
-    "express-handlebars": "^3.1.0"
+    "express-handlebars": "^3.1.0",
+    "pokedex-promise-v2": "^3.2.0"
   }
 }

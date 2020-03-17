@@ -1,0 +1,18 @@
+<div class="card mb-3">
+    <h3 class="card-header">No. {{general.id}}: {{general.name}}</h3>
+    <div class="card-body">
+        <h5 class="card-title">{{species.genera.2.genus}}</h5>
+        <h6 class="card-subtitle text-muted">{{species.genera.1.genus}}</h6>
+    </div>
+    <img src="{{general.sprites.front_default}}" alt="Card image">
+    <div class="card-body">
+        <h6 class="card-subtitle text-muted">{{species.flavor_text_entries.1.version.name}}</h6>
+        <p class="card-text">{{species.flavor_text_entries.2.flavor_text}}</p>
+        <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Type: {{general.types.0.type.name}}</li>
+        <li class="list-group-item">Height: {{#divide general.height 10}}{{/divide}} m / {{#divide general.height 3.048}}{{/divide}} ft </li>
+        <li class="list-group-item">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#multiply general.weight 0.2205}}{{/multiply}} lb</li>
+    </ul>
+</div>
