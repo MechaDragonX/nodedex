@@ -14,7 +14,7 @@ app.set('view engine', 'hbs');
 app.get('/', (req, res) => {
     return res.render('index', { title: 'NodeDex' });
 });
-app.get('/natl/:pokemon', async (req, res) => {
+app.get('/national/:pokemon', async (req, res) => {
     let general, species;
     let title: string;
 
