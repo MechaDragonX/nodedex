@@ -1,18 +1,25 @@
 <div class="card mb-3">
-    <h3 class="card-header">No. {{general.id}}: {{general.name}}</h3>
+    <h3 class="card-header">No. {{general.id}}: {{#format general.name}}{{/format}}</h3>
     <div class="card-body">
         <h5 class="card-title">{{species.genera.2.genus}}</h5>
         <h6 class="card-subtitle text-muted">{{species.genera.1.genus}}</h6>
     </div>
     <img style="width: 96px; height: 96px" src={{general.sprites.front_default}} alt="Card image">
     <div class="card-body">
-        <h6 class="card-subtitle text-muted">{{species.flavor_text_entries.1.version.name}}</h6>
-        <p class="card-text">{{species.flavor_text_entries.2.flavor_text}}</p>
-        <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p>
+        {{#ifEquals species.flavor_text_entries.0.language.name 'zh-Hans'}}
+            <p class="card-text text-muted">{{#format species.flavor_text_entries.1.version.name}}{{/format}}</p>
+            <p class="card-text">{{species.flavor_text_entries.2.flavor_text}}</p>
+            <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p>
+        {{/ifEquals}}
+        {{#ifEquals species.flavor_text_entries.0.language.name 'ja'}}
+            <p class="card-text text-muted">{{#format species.flavor_text_entries.0.version.name}}{{/format}}</p>
+            <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p>
+            <p class="card-text">{{species.flavor_text_entries.0.flavor_text}}</p>
+        {{/ifEquals}}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Type: {{general.types.0.type.name}}</li>
-        <li class="list-group-item">Height: {{#divide general.height 10}}{{/divide}} m / {{#divide general.height 3.048}}{{/divide}} ft </li>
-        <li class="list-group-item">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#multiply general.weight 0.2205}}{{/multiply}} lb</li>
+        <li class="list-group-item">Type: {{#format general.types.0.type.name}}{{/format}}</li>
+        <li class="list-group-item">Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height 3.048}}{{/toFeetInches}}</li>
+        <li class="list-group-item">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#toPounds general.weight}}{{/toPounds}} lb</li>
     </ul>
 </div>

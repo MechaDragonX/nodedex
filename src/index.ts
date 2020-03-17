@@ -14,21 +14,22 @@ app.set('view engine', 'hbs');
 app.get('/', (req, res) => {
     return res.render('index', { title: 'NodeDex' });
 });
-app.get('/natl/pikachu', async (req, res) => {
-    let general, species, title;
+app.get('/natl/:pokemon', async (req, res) => {
+    let general, species;
+    let title: string;
 
     try {
-        general = await dex.getPokemonByName('pikachu');
+        general = await dex.getPokemonByName(req.params.pokemon);
     } catch(e) {
         console.log('ERROR: ', e);
     }
     try {
-        species = await dex.getPokemonSpeciesByName('pikachu');
+        species = await dex.getPokemonSpeciesByName(req.params.pokemon);
     } catch(e) {
         console.log('ERROR: ', e);
     }
 
-    console.log(species);
+    console.log(general.height);
     title = 'No. ' + general.id + ': ' + general.name;
     return res.render('pokemon', { title: title, general: general, species: species });
 });
