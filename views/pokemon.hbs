@@ -36,6 +36,34 @@
         }
         return result.join(' ');
     };
+    const gameVersionJP = (eng) => {
+        
+    };
+    const typeJP = (eng) => {
+        let types = new Map([
+            ['normal', 'ノーマル'],
+            ['fire', 'ほのお'],
+            ['water', 'みず'],
+            ['grass', 'くさ'],
+            ['electric', 'でんき'],
+            ['ice', 'こおり'],
+            ['fighting', 'かくとう'],
+            ['poison', 'どく'],
+            ['ground', 'じめん'],
+            ['flying', 'ひこう'],
+            ['psychic', 'エスパー'],
+            ['bug', 'むし'],
+            ['rock', 'いわ'],
+            ['ghost', 'ゴースト'],
+            ['dragon', 'ドラゴン'],
+            ['dark', 'あく'],
+            ['steel', 'はがね'],
+            ['fairy', 'フェアリー'],
+        ]);
+        if(types.has(eng))
+            return types.get(eng);
+        console.log('And unexpected error occurered! The type wasn\'t found!');
+    };
     const toFeetInches = (value) => {
         let feet = value * 0.3281;
         let foot = parseInt(feet.toString());
@@ -71,7 +99,7 @@
             else
                 $('#flavor-text').text(format(species.flavor_text_entries[0].flavor_text));
             
-            $('#type').text('タイプ：' + format(general.types[0].type.name));
+            $('#type').text('タイプ：' + format(typeJP(general.types[0].type.name)));
             $('#height').text('高さ：' + (general.height / 10) + ' m');
             $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
         });
