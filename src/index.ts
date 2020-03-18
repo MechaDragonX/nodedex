@@ -28,7 +28,6 @@ app.get('/national/:pokemon', async (req, res) => {
     } catch(e) {
         console.log('ERROR: ', e);
     }
-    console.log(general.height / 10);
     name = general.name.charAt(0).toUpperCase() + general.name.substring(1);
     title = 'No. ' + general.id + ': ' + name;
 

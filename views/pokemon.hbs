@@ -1,25 +1,79 @@
+<div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="switch">
+    <label class="custom-control-label" for="switch" id="switch-label">Japanese (日本語)</label>
+</div>
+
 <div class="card mb-3">
-    <h3 class="card-header">No. {{general.id}}: {{#format general.name}}{{/format}}</h3>
+    <h3 class="card-header" id="header">No. {{general.id}}: {{#format general.name}}{{/format}}</h3>
     <div class="card-body">
-        <h5 class="card-title">{{species.genera.2.genus}}</h5>
-        <h6 class="card-subtitle text-muted">{{species.genera.1.genus}}</h6>
+        <h5 class="card-title" id="genus">{{species.genera.2.genus}}</h5>
+        {{!-- <h6 class="card-subtitle text-muted">{{species.genera.1.genus}}</h6> --}}
     </div>
-    <img style="width: 96px; height: 96px" src={{general.sprites.front_default}} alt="Card image">
+    <img style="width: 96px; height: 96px" src={{general.sprites.front_default}} alt="Image" id="image">
     <div class="card-body">
         {{#ifEquals species.flavor_text_entries.0.language.name 'zh-Hans'}}
-            <p class="card-text text-muted">{{#format species.flavor_text_entries.1.version.name}}{{/format}}</p>
-            <p class="card-text">{{species.flavor_text_entries.2.flavor_text}}</p>
-            <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p>
+            <p class="card-text text-muted" id="version">{{#format species.flavor_text_entries.1.version.name}}{{/format}}</p>
+            <p class="card-text" id="flavor-text">{{species.flavor_text_entries.2.flavor_text}}</p>
+            {{!-- <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p> --}}
         {{/ifEquals}}
         {{#ifEquals species.flavor_text_entries.0.language.name 'ja'}}
-            <p class="card-text text-muted">{{#format species.flavor_text_entries.0.version.name}}{{/format}}</p>
-            <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p>
-            <p class="card-text">{{species.flavor_text_entries.0.flavor_text}}</p>
+            <p class="card-text text-muted" id="version">{{#format species.flavor_text_entries.0.version.name}}{{/format}}</p>
+            <p class="card-text" id="flavor-text">{{species.flavor_text_entries.1.flavor_text}}</p>
+            {{!-- <p class="card-text">{{species.flavor_text_entries.0.flavor_text}}</p> --}}
         {{/ifEquals}}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Type: {{#format general.types.0.type.name}}{{/format}}</li>
-        <li class="list-group-item">Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height}}{{/toFeetInches}}</li>
-        <li class="list-group-item">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#toPounds general.weight}}{{/toPounds}} lb</li>
+        <li class="list-group-item" id="type">Type: {{#format general.types.0.type.name}}{{/format}}</li>
+        <li class="list-group-item" id="height">Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height}}{{/toFeetInches}}</li>
+        <li class="list-group-item" id="weight">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#toPounds general.weight}}{{/toPounds}} lb</li>
     </ul>
 </div>
+<script>
+    const format = (input) => {
+        let result = input.toLowerCase().split('-');;
+        for(let i = 0; i < result.length; i++) {
+            result[i] = result[i].charAt(0).toUpperCase() + result[i].slice(1); 
+        }
+        return result.join(' ');
+    };
+    const toFeetInches = (value) => {
+        let feet = value * 0.3281;
+        let foot = parseInt(feet.toString());
+        let inch = Math.round((feet - foot) * 12);
+
+        return foot + '\'' + inch + '\"';
+    }
+
+    const dex = new Pokedex.Pokedex();
+    let general;
+    let species;
+    let pokemon = window.location.pathname.slice(10);
+
+    $(document).ready(async function() {
+        try {
+            general = await dex.getPokemonByName(pokemon);
+        } catch(e) {
+            console.log('ERROR: ', e);
+        }
+        try {
+            species = await dex.getPokemonSpeciesByName(pokemon);
+        } catch(e) {
+            console.log('ERROR: ', e);
+        }
+
+        $('#switch').click(function() {
+            $('#switch-label').text('英語（English）');
+            $('#header').text('No.' + general.id + '　' + species.names[1].name);
+            $('#genus').text(species.genera[1].genus);
+
+            if(species.flavor_text_entries[0].language.name === 'zh-Hans')
+                $('#flavor-text').text(format(species.flavor_text_entries[1].flavor_text));
+            else
+                $('#flavor-text').text(format(species.flavor_text_entries[0].flavor_text));
+            
+            $('#type').text('タイプ：' + format(general.types[0].type.name));
+            $('#height').text('高さ：' + (general.height / 10) + ' m');
+            $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
+        });
+    });
+</script>
