@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 app.get('/national/:pokemon', async (req, res) => {
     let general, species;
-    let title: string;
+    let title, name: string;
 
     try {
         general = await dex.getPokemonByName(req.params.pokemon);
@@ -28,9 +28,10 @@ app.get('/national/:pokemon', async (req, res) => {
     } catch(e) {
         console.log('ERROR: ', e);
     }
+    console.log(general.height / 10);
+    name = general.name.charAt(0).toUpperCase() + general.name.substring(1);
+    title = 'No. ' + general.id + ': ' + name;
 
-    console.log(general.height);
-    title = 'No. ' + general.id + ': ' + general.name;
     return res.render('pokemon', { title: title, general: general, species: species });
 });
 app.get('*', (req, res) => {

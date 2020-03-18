@@ -19,7 +19,7 @@
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">Type: {{#format general.types.0.type.name}}{{/format}}</li>
-        <li class="list-group-item">Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height 3.048}}{{/toFeetInches}}</li>
+        <li class="list-group-item">Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height}}{{/toFeetInches}}</li>
         <li class="list-group-item">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#toPounds general.weight}}{{/toPounds}} lb</li>
     </ul>
 </div>

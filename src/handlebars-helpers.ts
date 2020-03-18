@@ -35,10 +35,11 @@ module.exports = {
         return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
     },
     toFeetInches: function(value) {
-        let feet: number = value / 3.048;
-        let foot: number = parseInt(feet.toFixed(0));
+        let feet: number = value * 0.3281;
+        let foot: number = parseInt(feet.toString());
+        let inch: number = Math.round((feet - foot) * 12);
 
-        return foot + '\'' + Math.round((feet - foot) * 12) + '\"';
+        return foot + '\'' + inch + '\"';
     },
     toPounds: function(value) {
         return (value * 0.2205).toFixed(1);
