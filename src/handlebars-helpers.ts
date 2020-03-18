@@ -31,8 +31,11 @@ module.exports = {
         }
         return result.join(' ');
     },
-    ifEquals: function(arg1, arg2, options) {
+    ifEqual: function(arg1, arg2, options) {
         return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    },
+    ifNotEqual: function(arg1, arg2, options) {
+        return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
     },
     toFeetInches: function(value) {
         let feet: number = value * 0.3281;

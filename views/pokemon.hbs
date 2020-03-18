@@ -4,28 +4,44 @@
 </div>
 
 <div class="card mb-3">
-    <h3 class="card-header" id="header">No. {{general.id}}: {{#format general.name}}{{/format}}</h3>
+    <h3 class="card-header" id="header">
+        No. {{general.id}}: {{#format general.name}}{{/format}}
+    </h3>
     <div class="card-body">
         <h5 class="card-title" id="genus">{{species.genera.2.genus}}</h5>
         {{!-- <h6 class="card-subtitle text-muted">{{species.genera.1.genus}}</h6> --}}
     </div>
     <img style="width: 96px; height: 96px" src={{general.sprites.front_default}} alt="Image" id="image">
     <div class="card-body">
-        {{#ifEquals species.flavor_text_entries.0.language.name 'zh-Hans'}}
+        {{#ifEqual species.flavor_text_entries.0.language.name 'zh-Hans'}}
             <p class="card-text text-muted" id="version">{{#format species.flavor_text_entries.1.version.name}}{{/format}}</p>
             <p class="card-text" id="flavor-text">{{species.flavor_text_entries.2.flavor_text}}</p>
             {{!-- <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p> --}}
-        {{/ifEquals}}
-        {{#ifEquals species.flavor_text_entries.0.language.name 'ja'}}
+        {{/ifEqual}}
+        {{#ifEqual species.flavor_text_entries.0.language.name 'ja'}}
             <p class="card-text text-muted" id="version">{{#format species.flavor_text_entries.0.version.name}}{{/format}}</p>
             <p class="card-text" id="flavor-text">{{species.flavor_text_entries.1.flavor_text}}</p>
             {{!-- <p class="card-text">{{species.flavor_text_entries.0.flavor_text}}</p> --}}
-        {{/ifEquals}}
+        {{/ifEqual}}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item" id="type">Type: {{#format general.types.0.type.name}}{{/format}}</li>
-        <li class="list-group-item" id="height">Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height}}{{/toFeetInches}}</li>
-        <li class="list-group-item" id="weight">Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#toPounds general.weight}}{{/toPounds}} lb</li>
+        {{#ifEqual general.types.length 1}}
+            <li class="list-group-item" id="type">
+                Type: {{#format general.types.0.type.name}}{{/format}}
+            </li>
+        {{/ifEqual}}
+        {{#ifEqual general.types.length 2}}
+            <li class="list-group-item" id="type">
+                Types: {{#format general.types.0.type.name}}{{/format}}, {{#format general.types.1.type.name}}{{/format}}
+            </li>
+        {{/ifEqual}}
+
+        <li class="list-group-item" id="height">
+            Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height}}{{/toFeetInches}}
+        </li>
+        <li class="list-group-item" id="weight">
+            Weight: {{#divide general.weight 10}}{{/divide}} kg / {{#toPounds general.weight}}{{/toPounds}} lb
+        </li>
     </ul>
 </div>
 <script>
@@ -36,10 +52,8 @@
         }
         return result.join(' ');
     };
-    const gameVersionJP = (eng) => {
-        
-    };
     const typeJP = (eng) => {
+        let jap = new Array();
         let types = new Map([
             ['normal', 'ノーマル'],
             ['fire', 'ほのお'],
@@ -60,9 +74,15 @@
             ['steel', 'はがね'],
             ['fairy', 'フェアリー'],
         ]);
-        if(types.has(eng))
-            return types.get(eng);
-        console.log('And unexpected error occurered! The type wasn\'t found!');
+        eng.forEach(function(item) {
+            if(types.has(item.type.name))
+                jap.push(types.get(item.type.name));
+            else
+                console.log('And unexpected error occurered! The type wasn\'t found!');
+        });
+        if(jap.length === 1)
+            return jap[0];
+        return jap;
     };
     const toFeetInches = (value) => {
         let feet = value * 0.3281;
@@ -99,7 +119,12 @@
             else
                 $('#flavor-text').text(format(species.flavor_text_entries[0].flavor_text));
             
-            $('#type').text('タイプ：' + format(typeJP(general.types[0].type.name)));
+            let jpType = typeJP(general.types);
+            if(typeof jpType === 'number')
+                $('#type').text('タイプ：' + jpType);
+            else
+                $('#type').text('タイプ：' + jpType[0] + '、' + jpType[1]);
+            
             $('#height').text('高さ：' + (general.height / 10) + ' m');
             $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
         });
