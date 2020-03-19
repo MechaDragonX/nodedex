@@ -20,7 +20,7 @@ You can view basic dex pages for all Pokémon from generation 1 to 7 (8 is not s
 you'll see this:
 ![English Screenshot - 18/3/2020](https://i.imgur.com/TUJhtEl.png "English Screenshot - 18/3/2020")
 
-If you click on the Japanese toggle swtich at the top, you'll see this:
+If you click on the Japanese toggle switch at the top, you'll see this:
 ![Japanese Screenshot - 18/3/2020](https://i.imgur.com/uHr1auR.png "Japanese Screenshot - 18/3/2020")
 
 ## Will this be the final name?
