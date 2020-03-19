@@ -110,23 +110,43 @@
         }
 
         $('#switch').click(function() {
-            $('#switch-label').text('英語（English）');
-            $('#header').text('No.' + general.id + '　' + species.names[1].name);
-            $('#genus').text(species.genera[1].genus);
+            if($(this).prop("checked")) {
+                $('#switch-label').text('英語（English）');
+                $('#header').text('No.' + general.id + '　' + species.names[1].name);
+                $('#genus').text(species.genera[1].genus);
 
-            if(species.flavor_text_entries[0].language.name === 'zh-Hans')
-                $('#flavor-text').text(format(species.flavor_text_entries[1].flavor_text));
-            else
-                $('#flavor-text').text(format(species.flavor_text_entries[0].flavor_text));
-            
-            let jpType = typeJP(general.types);
-            if(typeof jpType === 'number')
-                $('#type').text('タイプ：' + jpType);
-            else
-                $('#type').text('タイプ：' + jpType[0] + '、' + jpType[1]);
-            
-            $('#height').text('高さ：' + (general.height / 10) + ' m');
-            $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
+                if(species.flavor_text_entries[0].language.name === 'zh-Hans')
+                    $('#flavor-text').text(species.flavor_text_entries[1].flavor_text);
+                else
+                    $('#flavor-text').text(species.flavor_text_entries[0].flavor_text);
+                
+                let jpType = typeJP(general.types);
+                if(typeof jpType === 'number')
+                    $('#type').text('タイプ：' + jpType);
+                else
+                    $('#type').text('タイプ：' + jpType[0] + '、' + jpType[1]);
+                
+                $('#height').text('高さ：' + (general.height / 10) + ' m');
+                $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
+            }
+            else {
+                $('#switch-label').text('Japanese (日本語)');
+                $('#header').text('No. ' + general.id + ': ' + format(general.name));
+                $('#genus').text(species.genera[2].genus);
+
+                if(species.flavor_text_entries[0].language.name === 'zh-Hans')
+                    $('#flavor-text').text(format(species.flavor_text_entries[2].flavor_text));
+                else
+                    $('#flavor-text').text(format(species.flavor_text_entries[1].flavor_text));
+
+                if(general.types.length === 1)
+                    $('#type').text('Type: ' + format(general.types[0].type.name));
+                else
+                    $('#type').text('Types: ' + format(general.types[0].type.name) + ', ' + format(general.types[1].type.name));
+
+                $('#height').text('Height: ' + (general.height / 10) + ' m / ' + toFeetInches(general.height));
+                $('#weight').text('Weight: ' + (general.weight / 10) + ' kg / ' + ((general.weight * 0.2205).toFixed(1)) + ' lb');
+            }
         });
     });
 </script>

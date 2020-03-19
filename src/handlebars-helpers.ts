@@ -45,6 +45,6 @@ module.exports = {
         return foot + '\'' + inch + '\"';
     },
     toPounds: function(value) {
-        (value * 0.2205).toFixed(1);
+        return (value * 0.2205).toFixed(1);
     }
 }
