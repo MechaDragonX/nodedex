@@ -1,4 +1,4 @@
-<div class="custom-control custom-switch">
+<div style="margin: 10px 0pc 10px 10px" class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="switch">
     <label class="custom-control-label" for="switch" id="switch-label">Japanese (日本語)</label>
 </div>
@@ -48,7 +48,7 @@
     const format = (input) => {
         let result = input.toLowerCase().split('-');;
         for(let i = 0; i < result.length; i++) {
-            result[i] = result[i].charAt(0).toUpperCase() + result[i].slice(1); 
+            result[i] = result[i][0].toUpperCase() + result[i].slice(1); 
         }
         return result.join(' ');
     };
@@ -121,7 +121,7 @@
                     $('#flavor-text').text(species.flavor_text_entries[0].flavor_text);
                 
                 let jpType = typeJP(general.types);
-                if(typeof jpType === 'number')
+                if(typeof jpType === 'string')
                     $('#type').text('タイプ：' + jpType);
                 else
                     $('#type').text('タイプ：' + jpType[0] + '、' + jpType[1]);
