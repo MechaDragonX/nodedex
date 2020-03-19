@@ -2,13 +2,13 @@ import * as express from 'express';
 import * as exphbs from 'express-handlebars';
 import * as Pokedex from 'pokedex-promise-v2';
 import * as bodyParser from 'body-parser';
-const config = require('../config.json');
+const config = require('../../config.json');
 const app = express();
 const dex = new Pokedex();
 
 app.engine('.hbs', exphbs({
     extname: '.hbs',
-    helpers: require('../src/handlebars-helpers')
+    helpers: require('./handlebars-helpers')
 }));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
