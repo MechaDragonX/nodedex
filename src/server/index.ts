@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded());
-console.log(__dirname.slice(0, -6) + 'compiled');
 app.use('/client', express.static(__dirname.slice(0, -6) + 'compiled'));
 
 
@@ -26,7 +25,6 @@ app.get('/national', (req, res) => {
     return res.render('national', { title: 'National Pokédex' });
 });
 app.post('/national', (req, res) => {
-    console.log(req.body);
     return res.redirect('/national/' + req.body.pokemon.toLowerCase());
 });
 app.get('/national/:pokemon', async (req, res) => {
