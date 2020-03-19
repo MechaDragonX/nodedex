@@ -1,7 +1,16 @@
-<div style="margin: 10px 0pc 10px 10px" class="custom-control custom-switch">
+<div class="general form-group">
+    <form action="/national" method='post' class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text"
+            placeholder="Type in a Pokémon name or national dex number"
+            style="width: 325px;" id="pokemon" name="pokemon" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<span style="margin: 10px 0pc 10px 10px;" class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="switch">
     <label class="custom-control-label" for="switch" id="switch-label">Japanese (日本語)</label>
-</div>
+</span>
 
 <div class="card mb-3">
     <h3 class="card-header" id="header">
@@ -44,6 +53,7 @@
         </li>
     </ul>
 </div>
+
 <script>
     const format = (input) => {
         let result = input.toLowerCase().split('-');;
@@ -111,6 +121,8 @@
 
         $('#switch').click(function() {
             if($(this).prop("checked")) {
+                $('#title').text('No.' + general.id + '　' + species.names[1].name);
+
                 $('#switch-label').text('英語（English）');
                 $('#header').text('No.' + general.id + '　' + species.names[1].name);
                 $('#genus').text(species.genera[1].genus);
@@ -130,6 +142,8 @@
                 $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
             }
             else {
+                $('#title').text('No. ' + general.id + ': ' + format(general.name));
+
                 $('#switch-label').text('Japanese (日本語)');
                 $('#header').text('No. ' + general.id + ': ' + format(general.name));
                 $('#genus').text(species.genera[2].genus);

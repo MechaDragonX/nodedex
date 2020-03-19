@@ -1,0 +1,25 @@
+{{#if error}}
+    <div class="alert alert-dismissible alert-danger" id="alert">
+        <button type="button" class="close" data-dismiss="alert" id="hide">&times;</button>
+        <h4 class="alert-heading">Oh Snap!</h4>
+        <p class="mb-0">{{message}}</p>
+    </div>
+{{/if}}
+
+<div class="general">
+    <h1>National Pokédex</h1>
+</div>
+<div class="general form-group">
+    <form method='post' class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text"
+            placeholder="Type in a Pokémon name or national dex number"
+            style="width: 325px;" id="pokemon" name="pokemon" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<script>
+    $('#hide').click(function() {
+        $('#alert').hide();
+    });
+</script>

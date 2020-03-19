@@ -2,14 +2,19 @@
 <head>
     <meta name='viewport' content='width=device-width, initial-scale=1.0; charset=utf-8' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css"
-        integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">
+        integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
-    <title>{{title}}</title>
+    <title id="title">{{title}}</title>
 </head>
+<style>
+    div.general {
+        margin: 10px 0px 10px 10px;
+    }
+</style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="">NodeDex</a>
+        <a class="navbar-brand" href="/">NodeDex</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="">placeholder</a>
+                    <a class="nav-link" href="/national">National Pokédex</a>
                 </li>
             </ul>
         </div>
