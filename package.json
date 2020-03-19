@@ -4,7 +4,7 @@
   "description": "A Pokemon Pokedex website made in Node",
   "main": "index.ts",
   "scripts": {
-    "test": "ts-node src"
+    "test": "ts-node src/server"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ As stated before, this project is written in TypeScript which compiles in a Node
 $ npm install -g typscript
 $ npm install -g ts-node
 $ npm i
-$ ts-node src
+$ ts-node src/server
 ```
 Then navigate to http://localhost:1996/.
 Why that port number? Cuz [February 27, 1996](https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Day)
