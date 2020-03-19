@@ -1,9 +1,10 @@
 # NodeDex
 
 ## What is NodeDex?
-NodeDex is a Pokédex website written in TypeScript and compiled in a Node.js environment, hence the name. This is largely a project for fun, but I want to incorporate features of the popular Pokémon fansites, like [Serebii](https://www.serebii.net/), [Bulbapedia](https://bulbapedia.bulbagarden.net/), and [Pokémon DB](https://pokemondb.net/) and hopefully make a site than their PokéDex sections.
+NodeDex is a Pokédex website written in TypeScript and compiled in a Node.js environment, hence the name. This is largely a project for fun, but I want to incorporate features of the popular Pokémon fansites, like [Serebii](https://www.serebii.net/), [Bulbapedia](https://bulbapedia.bulbagarden.net/), and [Pokémon DB](https://pokemondb.net/) and hopefully make a site than their PokéDex sections. You can access the production build [here](https://pokedex.mechadragonx.me/)!
 
 ## How do I run it?
+You can just go [here](https://pokedex.mechadragonx.me/) but...
 As stated before, this project is written in TypeScript which compiles in a Node.js environment to JS. Make sure to install the [`typescript`](https://www.typescriptlang.org/) and [`ts-node`](https://www.npmjs.com/package/ts-node) packages to allow the project to run and then install all the packages specified in the `package.json`. Here are the commands you'll need:
 ```shell
 $ npm install -g typscript
