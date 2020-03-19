@@ -4,3 +4,7 @@
 # Node Files
 node_modules/
 package-lock.json
+
+# EC2 Instance Files
+*.pem
+*.ppk
