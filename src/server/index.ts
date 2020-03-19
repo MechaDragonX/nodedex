@@ -15,6 +15,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded());
+console.log(__dirname.slice(0, -6) + 'compiled');
+app.use('/client', express.static(__dirname.slice(0, -6) + 'compiled'));
+
 
 app.get('/', (req, res) => {
     return res.render('index', { title: 'NodeDex' });
