@@ -32,10 +32,22 @@ module.exports = {
         return result.join(' ');
     },
     ifEqual: function(arg1, arg2, options) {
-        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
     },
     ifNotEqual: function(arg1, arg2, options) {
         return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
+    },
+    ifLessThan: function(arg1, arg2, options) {
+        return (arg1 < arg2) ? options.fn(this) : options.inverse(this);
+    },
+    ifGreaterThan: function(arg1, arg2, options) {
+        return (arg1 > arg2) ? options.fn(this) : options.inverse(this);
+    },
+    pokemonLink: function(id: number) {
+        return `/national/${id}`
+    },
+    imageLink: function(id: number) {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     },
     toFeetInches: function(value) {
         let feet: number = value * 0.3281;

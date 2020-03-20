@@ -1,16 +1,14 @@
 <div class="general form-group">
-    <form action="/national" method='post' class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text"
-            placeholder="Type in a Pokémon name or national dex number"
-            style="width: 325px;" id="pokemon" name="pokemon" />
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <input class="form-control" type="text"
+        placeholder="Type in a Pokémon name or national dex number"
+        style="width: 325px;" id="searchBar" />
+    <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
 </div>
 
-<span style="margin: 10px 0pc 10px 10px;" class="custom-control custom-switch">
+<div style="margin: 10px 0pc 10px 10px;" class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="switch">
     <label class="custom-control-label" for="switch" id="switch-label">Japanese (日本語)</label>
-</span>
+</div>
 
 <div class="card mb-3">
     <h3 class="card-header" id="header">
@@ -25,12 +23,10 @@
         {{#ifEqual species.flavor_text_entries.0.language.name 'zh-Hans'}}
             <p class="card-text text-muted" id="version">{{#format species.flavor_text_entries.1.version.name}}{{/format}}</p>
             <p class="card-text" id="flavor-text">{{species.flavor_text_entries.2.flavor_text}}</p>
-            {{!-- <p class="card-text">{{species.flavor_text_entries.1.flavor_text}}</p> --}}
         {{/ifEqual}}
         {{#ifEqual species.flavor_text_entries.0.language.name 'ja'}}
             <p class="card-text text-muted" id="version">{{#format species.flavor_text_entries.0.version.name}}{{/format}}</p>
             <p class="card-text" id="flavor-text">{{species.flavor_text_entries.1.flavor_text}}</p>
-            {{!-- <p class="card-text">{{species.flavor_text_entries.0.flavor_text}}</p> --}}
         {{/ifEqual}}
     </div>
     <ul class="list-group list-group-flush">
@@ -56,3 +52,4 @@
 
 <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
 <script src="/client/getPokemonData.js"></script>
+<script src="/client/redirectToPokemon.js"></script>
