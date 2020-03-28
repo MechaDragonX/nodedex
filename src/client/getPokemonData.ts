@@ -5,7 +5,7 @@ const format = (input): string => {
     }
     return result.join(' ');
 };
-const typeJP = (eng) => {
+const typeJP = (eng): any => {
     let jap: string[] = new Array<string>();
     let types: Map<string, string> = new Map<string, string>([
         ['normal', 'ノーマル'],
@@ -42,10 +42,10 @@ const toFeetInches = (value: number): string => {
     let foot: number = parseInt(feet.toString());
     let inch: number = Math.round((feet - foot) * 12);
 
-    return foot + '\'' + inch + '\"';
+    return `${foot}\'${inch}\"`;
 }
 
-const toJapanese = () => {
+const toJapanese = (): void => {
     $('#title').text('No.' + general.id + '　' + species.names[1].name);
     $('#switch-label').text('英語（English）');
     $('#header').text('No.' + general.id + '　' + species.names[1].name);
@@ -62,7 +62,7 @@ const toJapanese = () => {
     $('#height').text('高さ：' + (general.height / 10) + ' m');
     $('#weight').text('重さ：' + (general.weight / 10) + ' kg');
 }
-const toEnglish = () => {
+const toEnglish = (): void => {
     $('#title').text('No. ' + general.id + ': ' + format(general.name));
     $('#switch-label').text('Japanese (日本語)');
     $('#header').text('No. ' + general.id + ': ' + format(general.name));

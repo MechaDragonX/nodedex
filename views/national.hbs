@@ -18,17 +18,16 @@
 
 <div>
     {{#each pokemon as |pokemon|}}
-        <div class="general card text-white bg-primary mb-3" style="max-width: 20rem; float: left;">
+        <div class="general card text-white bg-primary mb-3" style="float: left;">
             <div class="card-header">
-                <a href="{{#pokemonLink pokemon.id}}{{/pokemonLink}}">
-                    <h4>
+                <a href={{#pokemonLink pokemon.id}}{{/pokemonLink}}>
+                    <h3>
                         No. {{pokemon.id}}: {{#format pokemon.name}}{{/format}}
-                    </h4>
+                    </h3>
                 </a>
             </div>
             <div class="card-body">
-                <h3 class="card-title">{{pokemon.genera.2.genus}}</h4>
-
+                <h4 class="card-title">{{pokemon.genera.2.genus}}</h4>
                 <img style="width: 96px; height: 96px"
                 src={{#imageLink pokemon.id}}{{/imageLink}}
                 alt="Image" id="image">
@@ -37,9 +36,4 @@
     {{/each}}
 </div>
 
-<script>
-    $('#hide').click(function() {
-        $('#alert').hide();
-    });
-</script>
-<script src="/client/redirectToPokemon.js"></script>
+<script src="/client/dex.js"></script>

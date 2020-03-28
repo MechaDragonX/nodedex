@@ -1,49 +1,9 @@
 import * as express from 'express';
 import * as exphbs from 'express-handlebars';
-import * as Pokedex from 'pokedex-promise-v2';
 import * as bodyParser from 'body-parser';
 const config = require('../../config.json');
+const { getPokemonDataReq, getPokemonSpeciesDataReq, getPokemonData, getPokemonSpeciesData } = require('./serverUtil');
 const app = express();
-const dex = new Pokedex();
-
-const getPokemonDataReq = async (req, res) => {
-    try {
-        return await dex.getPokemonByName(req.params.pokemon);
-    } catch(e) {
-        console.log('ERROR: ', e);
-        res.render('national', {
-            title: 'National Pokédex',
-            error: true,
-            message: 'The Pokémon was not found! Either the Pokémon doesn\'t exist, or is a Generation 8 Pokémon, whcih the API doesn\'t support yet!'
-        });
-    }
-};
-const getPokemonSpeciesDataReq = async (req) => {
-    try {
-        return await dex.getPokemonSpeciesByName(req.params.pokemon);
-    } catch(e) {
-        console.log('ERROR: ', e);
-    }
-}
-const getPokemonData = async (pokemon, res) => {
-    try {
-        return await dex.getPokemonByName(pokemon);
-    } catch(e) {
-        console.log('ERROR: ', e);
-        res.render('national', {
-            title: 'National Pokédex',
-            error: true,
-            message: 'The Pokémon was not found! Either the Pokémon doesn\'t exist, or is a Generation 8 Pokémon, whcih the API doesn\'t support yet!'
-        });
-    }
-};
-const getPokemonSpeciesData = async (pokemon) => {
-    try {
-        return await dex.getPokemonSpeciesByName(pokemon);
-    } catch(e) {
-        console.log('ERROR: ', e);
-    }
-}
 
 app.engine('.hbs', exphbs({
     extname: '.hbs',
@@ -62,13 +22,13 @@ app.get('/', (req, res) => {
 });
 app.get('/national', async (req, res) => {
     let pokemonSpecies = new Array();
-
-    let general, species;
+    let species;
 
     for(let i: number = 1; i <= 10; i++) {
         species = await getPokemonSpeciesData(i);
         pokemonSpecies.push(species);
     }
+
     return res.render('national', { title: 'National Pokédex', pokemon: pokemonSpecies });
 });
 app.post('/national', (req, res) => {
