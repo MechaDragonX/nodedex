@@ -41,6 +41,17 @@
             </li>
         {{/ifEqual}}
 
+        {{#ifEqual general.abilities.length 2}}
+            <li class="list-group-item" id="type">
+                Abilities: {{#format general.abilities.0.ability.name}}{{/format}}, {{#format general.abilities.1.ability.name}}{{/format}}
+            </li>
+        {{/ifEqual}}
+        {{#ifEqual general.abilities.length 3}}
+            <li class="list-group-item" id="type">
+                Abilities: {{#format general.abilities.0.ability.name}}{{/format}}, {{#format general.abilities.1.ability.name}}{{/format}}, {{#format general.abilities.2.ability.name}}{{/format}}
+            </li>
+        {{/ifEqual}}
+
         <li class="list-group-item" id="height">
             Height: {{#divide general.height 10}}{{/divide}} m / {{#toFeetInches general.height}}{{/toFeetInches}}
         </li>
