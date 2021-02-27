@@ -5,9 +5,5 @@
 node_modules/
 package-lock.json
 
-# Compiled TypeScript Files
+# Compiled JavaScript Scripts
 src/compiled/
-
-# EC2 Instance Files
-*.pem
-*.ppk
